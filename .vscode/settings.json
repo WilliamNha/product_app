@@ -11,7 +11,6 @@
     "editor.tabCompletion": "onlySnippets",
     "editor.wordBasedSuggestions": "off",
     "editor.selectionHighlight": false,
-    "debug.allowBreakpointsEverywhere": true,
     "dart.debugExternalLibraries": true,
     "dart.debugSdkLibraries": true,
     "editor.rulers": [

@@ -3,11 +3,11 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:product_app/config/theme/colors_common.dart';
 import 'package:product_app/config/theme/theme_color.dart';
 import 'package:product_app/config/theme/theme_text.dart';
-import 'package:product_app/features/products/bloc/category_bloc.dart';
-import 'package:product_app/features/products/bloc/category_event.dart';
-import 'package:product_app/features/products/bloc/category_state.dart';
+import 'package:product_app/features/products/bloc/category/category_bloc.dart';
+import 'package:product_app/features/products/bloc/category/category_event.dart';
+import 'package:product_app/features/products/bloc/category/category_state.dart';
+import 'package:product_app/features/products/widgets/category_card_widget.dart';
 import 'package:product_app/widgets/appbar/main_appbar.dart';
-import 'package:product_app/widgets/buttons/widget_button.dart';
 
 class HomePage extends StatefulWidget {
   const HomePage({super.key});
@@ -21,6 +21,10 @@ class _HomePageState extends State<HomePage> {
   void initState() {
     super.initState();
     context.read<CategoryBloc>().add(const GetCategories());
+  }
+
+  void goToCategoryDetailPage(String name) {
+    Navigator.pushNamed(context, '/CategoryDetails', arguments: name);
   }
 
   @override
@@ -48,8 +52,8 @@ class _HomePageState extends State<HomePage> {
             }
 
             if (state is CategoriesDone) {
-              final catagories = state.categories;
-              if (catagories?.isEmpty ?? true) return const SizedBox();
+              final catagories = state.categories ?? [];
+              if (catagories.isEmpty) return const SizedBox();
 
               return Padding(
                 padding: const EdgeInsets.symmetric(horizontal: 16),
@@ -61,28 +65,21 @@ class _HomePageState extends State<HomePage> {
                       const SizedBox(height: 16),
                       Text('Product Categories', style: context.themeText.text26Bold),
                       const SizedBox(height: 20),
-                      ListView.separated(
+                      GridView.builder(
                         physics: const NeverScrollableScrollPhysics(),
                         shrinkWrap: true,
-                        separatorBuilder: (_, index) => const SizedBox(height: 20),
-                        itemCount: catagories!.length,
+                        itemCount: catagories.length,
+                        gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
+                          crossAxisCount: 2,
+                          mainAxisSpacing: 12,
+                          crossAxisSpacing: 12,
+                          childAspectRatio: 1.4,
+                        ),
                         itemBuilder: (context, index) {
                           final category = catagories[index];
-                          return WidgetButton(
-                            backgroundColor: ColorsCommon.transparent,
-                            onPress: () {},
-                            child: Container(
-                              padding: const EdgeInsets.symmetric(horizontal: 8, vertical: 12),
-                              width: MediaQuery.of(context).size.width,
-                              decoration: BoxDecoration(
-                                color: context.themeColor.chipBgColor,
-                                borderRadius: BorderRadius.circular(8),
-                              ),
-                              child: Text(
-                                category.name ?? '',
-                                style: const TextStyle(fontSize: 14),
-                              ),
-                            ),
+                          return CategoryCardWidget(
+                            onTap: () => goToCategoryDetailPage(category.name ?? ''),
+                            categoryName: category.name,
                           );
                         },
                       ),
