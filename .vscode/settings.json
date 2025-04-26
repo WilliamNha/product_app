@@ -1,0 +1,49 @@
+{
+    "debug.openDebug": "openOnDebugBreak",
+    "dart.previewFlutterUiGuides": true,
+    "dart.previewFlutterUiGuidesCustomTracking": true,
+    "editor.codeActionsOnSave": {
+        "source.organizeImports": "explicit"
+    },
+    "editor.formatOnSave": true,
+    "editor.formatOnType": false,
+    "editor.suggestSelection": "first",
+    "editor.tabCompletion": "onlySnippets",
+    "editor.wordBasedSuggestions": "off",
+    "editor.selectionHighlight": false,
+    "debug.allowBreakpointsEverywhere": true,
+    "dart.debugExternalLibraries": true,
+    "dart.debugSdkLibraries": true,
+    "editor.rulers": [
+        100
+    ],
+    "dart.lineLength": 100,
+    "dart.analysisExcludedFolders": [
+        "lib/gen/intl"
+    ],
+    "dart.flutterHotReloadOnSave": "all",
+    "dart.flutterSdkPath": ".fvm/flutter_sdk",
+    "search.exclude": {
+        "**/.fvm": true,
+        "build/": true,
+        // "ios/": true,
+        // "android/": true,
+        "coverage/": true
+    },
+    "files.watcherExclude": {
+        "**/.fvm": true
+    },
+    "task.autoDetect": "off",
+    "task.quickOpen.history": 0,
+    "files.exclude": {
+        "**/.idea": true,
+        "**/*.iml": true,
+        "**/.metadata": true
+    },
+    "workbench.colorCustomizations": {
+        "titleBar.inactiveBackground": "#3861FB",
+        "titleBar.activeBackground": "#3861FB",
+        "titleBar.activeForeground": "#000",
+        "titleBar.inactiveForeground": "#000"
+    }
+}
