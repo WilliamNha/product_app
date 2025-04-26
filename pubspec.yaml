@@ -65,6 +65,7 @@ dev_dependencies:
   flutter_gen_runner: ^5.4.0
   injectable_generator: ^2.5.0
   theme_tailor: ^3.0.1
+  json_serializable: ^6.8.0
 
 flutter_gen:
   output: lib/gen/ # Optional (default: lib/gen/)

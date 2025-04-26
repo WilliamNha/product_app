@@ -7,4 +7,5 @@ class ColorsCommon {
   static const grey = Color(0xFFD4D4D4);
   static const yellow = Color(0xFFFCDC2D);
   static const orange2 = Color(0xffE09321);
+  static const red = Color(0xFFFF0000);
 }
