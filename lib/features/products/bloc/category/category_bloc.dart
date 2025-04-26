@@ -1,8 +1,8 @@
 import 'package:dio/dio.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:injectable/injectable.dart';
-import 'package:product_app/features/products/bloc/category_event.dart';
-import 'package:product_app/features/products/bloc/category_state.dart';
+import 'package:product_app/features/products/bloc/category/category_event.dart';
+import 'package:product_app/features/products/bloc/category/category_state.dart';
 import 'package:product_app/features/products/usecases/get_categories_usecase.dart';
 
 @injectable
