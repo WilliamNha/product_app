@@ -33,10 +33,10 @@ extension GetItInjectableX on _i174.GetIt {
     final serviceDio = _$ServiceDio();
     gh.lazySingleton<_i361.Dio>(() => serviceDio.dio());
     gh.factory<_i895.CategoryRepo>(() => _i895.CategoryRepo(gh<_i361.Dio>()));
-    gh.factory<_i119.GetCategoriesUsecase>(
-        () => _i119.GetCategoriesUsecase(gh<_i895.CategoryRepo>()));
     gh.factory<_i533.GetProductsUsecase>(
         () => _i533.GetProductsUsecase(gh<_i895.CategoryRepo>()));
+    gh.factory<_i119.GetCategoriesUsecase>(
+        () => _i119.GetCategoriesUsecase(gh<_i895.CategoryRepo>()));
     gh.factory<_i1061.ProductBloc>(
         () => _i1061.ProductBloc(gh<_i533.GetProductsUsecase>()));
     gh.factory<_i953.CategoryBloc>(

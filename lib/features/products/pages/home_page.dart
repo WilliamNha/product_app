@@ -7,7 +7,9 @@ import 'package:product_app/features/products/bloc/category/category_bloc.dart';
 import 'package:product_app/features/products/bloc/category/category_event.dart';
 import 'package:product_app/features/products/bloc/category/category_state.dart';
 import 'package:product_app/features/products/widgets/category_card_widget.dart';
+import 'package:product_app/localization.dart';
 import 'package:product_app/widgets/appbar/main_appbar.dart';
+import 'package:product_app/widgets/drawer/app_drawer.dart';
 
 class HomePage extends StatefulWidget {
   const HomePage({super.key});
@@ -30,7 +32,7 @@ class _HomePageState extends State<HomePage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      drawer: const Drawer(),
+      drawer: const AppDrawer(),
       backgroundColor: context.themeColor.bgColor,
       appBar: const HomeAppbar(),
       body: BlocListener<CategoryBloc, CategoryState>(
@@ -63,7 +65,7 @@ class _HomePageState extends State<HomePage> {
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
                       const SizedBox(height: 16),
-                      Text('Product Categories', style: context.themeText.text26Bold),
+                      Text(context.trans.product_category, style: context.themeText.text26Bold),
                       const SizedBox(height: 20),
                       GridView.builder(
                         physics: const NeverScrollableScrollPhysics(),
