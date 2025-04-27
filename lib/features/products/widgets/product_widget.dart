@@ -25,7 +25,7 @@ class ProductWidget extends StatelessWidget {
                 placeholder: (context, url) => const Center(child: CircularProgressIndicator()),
                 imageUrl: product?.thumbnail ?? '',
                 fit: BoxFit.cover,
-                height: 140,
+                height: 120,
               ),
             ),
           ),
