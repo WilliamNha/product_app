@@ -3,20 +3,34 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:product_app/config/theme/colors_common.dart';
 import 'package:product_app/config/theme/theme_color.dart';
 import 'package:product_app/config/theme/theme_text.dart';
-import 'package:product_app/core/bloc/locale/local_state.dart';
 import 'package:product_app/core/bloc/locale/locale_bloc.dart';
 import 'package:product_app/core/bloc/locale/locale_event.dart';
+import 'package:product_app/core/bloc/theme/theme_bloc.dart';
+import 'package:product_app/core/bloc/theme/theme_event.dart';
+import 'package:product_app/core/bloc/theme/theme_state.dart';
 import 'package:product_app/gen/assets.gen.dart';
 import 'package:product_app/localization.dart';
+import 'package:product_app/widgets/buttons/switch_button.dart';
 import 'package:product_app/widgets/buttons/widget_button.dart';
 
-class AppDrawer extends StatelessWidget {
+class AppDrawer extends StatefulWidget {
   const AppDrawer({super.key});
 
   @override
+  State<AppDrawer> createState() => _AppDrawerState();
+}
+
+class _AppDrawerState extends State<AppDrawer> {
+  void toggleTheme() {
+    context.read<ThemeBloc>().add(ToggleTheme());
+  }
+
+  @override
   Widget build(BuildContext context) {
-    return BlocBuilder<LocaleBloc, LocaleState>(
+    return BlocBuilder<ThemeBloc, ThemeState>(
       builder: (context, state) {
+        final theme = state.themeData;
+        final isDark = theme.brightness == Brightness.dark;
         return SizedBox(
           width: 200,
           child: Drawer(
@@ -31,7 +45,7 @@ class AppDrawer extends StatelessWidget {
                   Center(
                     child: Text(
                       context.trans.language,
-                      style: context.themeText.text18Medium,
+                      style: context.themeText.text18SemiBold,
                     ),
                   ),
                   const SizedBox(height: 20),
@@ -53,8 +67,13 @@ class AppDrawer extends StatelessWidget {
                   const SizedBox(height: 30),
                   Text(
                     context.trans.setting,
-                    style: context.themeText.text18Medium,
+                    style: context.themeText.text18SemiBold,
                   ),
+                  const SizedBox(height: 10),
+                  SwitchButton(
+                      isSelect: isDark,
+                      txt: context.trans.dark_mode,
+                      onSelect: (value) => toggleTheme())
                 ],
               ),
             ),
