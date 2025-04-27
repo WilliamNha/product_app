@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:product_app/config/theme/colors_common.dart';
 import 'package:product_app/config/theme/theme_color.dart';
 import 'package:product_app/config/theme/theme_text.dart';
+import 'package:product_app/localization.dart';
 
 class HomeAppbar extends StatelessWidget implements PreferredSizeWidget {
   const HomeAppbar({super.key});
@@ -21,7 +22,9 @@ class HomeAppbar extends StatelessWidget implements PreferredSizeWidget {
           width: 10,
           height: 10,
           child: GestureDetector(
-            onTap: () {},
+            onTap: () {
+              Scaffold.of(context).openDrawer();
+            },
             child: const Icon(
               Icons.menu,
               color: ColorsCommon.white,
@@ -32,7 +35,7 @@ class HomeAppbar extends StatelessWidget implements PreferredSizeWidget {
       elevation: 0,
       centerTitle: true,
       title: Text(
-        'William Store',
+        context.trans.william_store,
         style: context.themeText.text18Bold.copyWith(color: ColorsCommon.white),
       ),
     );
