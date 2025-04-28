@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:product_app/config/theme/colors_common.dart';
 import 'package:product_app/config/theme/theme_color.dart';
 import 'package:product_app/config/theme/theme_text.dart';
 import 'package:product_app/features/products/bloc/product/product_bloc.dart';
@@ -8,6 +7,7 @@ import 'package:product_app/features/products/bloc/product/product_event.dart';
 import 'package:product_app/features/products/bloc/product/product_state.dart';
 import 'package:product_app/features/products/widgets/product_widget.dart';
 import 'package:product_app/widgets/appbar/category_detail_appbar.dart';
+import 'package:product_app/widgets/listeners/app_bloc_listener.dart';
 
 class CategoryDetailPage extends StatefulWidget {
   final String categoryName;
@@ -29,18 +29,7 @@ class _CategoryDetailPageState extends State<CategoryDetailPage> {
     return Scaffold(
       backgroundColor: context.themeColor.bgColor,
       appBar: CategoryDetailAppbar(title: widget.categoryName),
-      body: BlocListener<ProductBloc, ProductState>(
-        listenWhen: (previous, current) => current is ProductError,
-        listener: (context, state) {
-          if (state is ProductError) {
-            ScaffoldMessenger.of(context).showSnackBar(
-              SnackBar(
-                content: Text(state.error ?? ''),
-                backgroundColor: ColorsCommon.red,
-              ),
-            );
-          }
-        },
+      body: AppBlocListener<ProductBloc, ProductState>(
         child: BlocBuilder<ProductBloc, ProductState>(
           builder: (_, state) {
             if (state is ProductLoading) {

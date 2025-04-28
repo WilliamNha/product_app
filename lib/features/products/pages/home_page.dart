@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:product_app/config/theme/colors_common.dart';
 import 'package:product_app/config/theme/theme_color.dart';
 import 'package:product_app/config/theme/theme_text.dart';
 import 'package:product_app/features/products/bloc/category/category_bloc.dart';
@@ -10,6 +9,7 @@ import 'package:product_app/features/products/widgets/category_card_widget.dart'
 import 'package:product_app/localization.dart';
 import 'package:product_app/widgets/appbar/main_appbar.dart';
 import 'package:product_app/widgets/drawer/app_drawer.dart';
+import 'package:product_app/widgets/listeners/app_bloc_listener.dart';
 
 class HomePage extends StatefulWidget {
   const HomePage({super.key});
@@ -35,18 +35,7 @@ class _HomePageState extends State<HomePage> {
       drawer: const AppDrawer(),
       backgroundColor: context.themeColor.bgColor,
       appBar: const HomeAppbar(),
-      body: BlocListener<CategoryBloc, CategoryState>(
-        listenWhen: (previous, state) => state is CategoryError,
-        listener: (context, state) {
-          if (state is CategoryError) {
-            ScaffoldMessenger.of(context).showSnackBar(
-              SnackBar(
-                content: Text(state.error ?? ''),
-                backgroundColor: ColorsCommon.red,
-              ),
-            );
-          }
-        },
+      body: AppBlocListener<CategoryBloc, CategoryState>(
         child: BlocBuilder<CategoryBloc, CategoryState>(
           builder: (context, state) {
             if (state is CategoryLoading) {
